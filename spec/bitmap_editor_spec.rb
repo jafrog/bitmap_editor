@@ -4,10 +4,10 @@ require "bitmap_editor"
 describe BitmapEditor do
   subject(:bitmap_editor) { described_class.new }
 
-  it "Creates an MxN image with all pixels colored white" do
+  xit "Creates an MxN image with all pixels colored white" do
     command = "I 2 2\n"
 
-    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::SHOW, BitmapEditor::EXIT)
+    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::SHOW, BitmapEditor::Command::EXIT)
     expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
     expect(Kernel).to receive(:puts).with("00\n00\n")
     expect(Kernel).to receive(:puts).with(BitmapEditor::GOODBYE_MESSAGE)
@@ -24,10 +24,10 @@ describe BitmapEditor do
   it "Displays help text" do
     command = "?\n"
 
-    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::EXIT)
+    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
     expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::INSTRUCTIONS_MESSAGE)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::GOODBYE_MESSAGE)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Help::MESSAGE)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
     bitmap_editor.run
   end
@@ -37,7 +37,7 @@ describe BitmapEditor do
 
     allow(Kernel).to receive(:gets).and_return(command)
     expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::GOODBYE_MESSAGE)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
     bitmap_editor.run
   end
@@ -45,9 +45,10 @@ describe BitmapEditor do
   it "Doesn't react to unrecognised commands" do
     command = "foo\n"
 
-    allow(Kernel).to receive(:gets).and_return(command)
+    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
     expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::UNRECOGNISED_MESSAGE)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Unknown::MESSAGE)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
     bitmap_editor.run
   end

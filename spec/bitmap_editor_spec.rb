@@ -25,7 +25,6 @@ describe BitmapEditor do
     command = "?\n"
 
     allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Help::MESSAGE)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
@@ -36,7 +35,6 @@ describe BitmapEditor do
     command = "X\n"
 
     allow(Kernel).to receive(:gets).and_return(command)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
     bitmap_editor.run
@@ -46,7 +44,6 @@ describe BitmapEditor do
     command = "foo\n"
 
     allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Unknown::MESSAGE)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 

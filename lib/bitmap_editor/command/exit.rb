@@ -3,10 +3,7 @@ class BitmapEditor
     class Exit
       MESSAGE = "goodbye!"
 
-      def initialize(arguments = nil)
-      end
-
-      def run
+      def run(current_image = nil)
         Kernel.puts MESSAGE
       end
 

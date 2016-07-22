@@ -4,19 +4,28 @@ require "bitmap_editor"
 describe BitmapEditor do
   subject(:bitmap_editor) { described_class.new }
 
-  xit "Creates an MxN image with all pixels colored white" do
+  it "Creates an MxN image with all pixels colored white" do
     command = "I 2 2\n"
 
     allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::SHOW, BitmapEditor::Command::EXIT)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::INITIAL_MESSAGE)
-    expect(Kernel).to receive(:puts).with("00\n00\n")
-    expect(Kernel).to receive(:puts).with(BitmapEditor::GOODBYE_MESSAGE)
+    expect(Kernel).to receive(:puts).with("00\n00")
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
     bitmap_editor.run
   end
 
   xit "Clears the table, setting all pixels to white (O)"
-  xit "Colours the pixel (X,Y) with colour C"
+
+  it "Colours the pixel (1,1) with colour A" do
+    create_image = "I 2 2\n"
+    command = "L 1 1 A\n"
+
+    allow(Kernel).to receive(:gets).and_return(create_image, command, BitmapEditor::Command::SHOW, BitmapEditor::Command::EXIT)
+    expect(Kernel).to receive(:puts).with("A0\n00")
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
+
+    bitmap_editor.run
+  end
   xit "Draws a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive)"
   xit "Draws a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive)"
   xit "Shows the contents of the current image"

@@ -12,4 +12,10 @@ describe BitmapEditor::Image do
     image.color_pixel(1, 2, "A")
     expect(image.display).to eq "00\nA0"
   end
+
+  it "clears image" do
+    image.color_pixel(1, 2, "A")
+    image.clear
+    expect(image.display).to eq "00\n00"
+  end
 end

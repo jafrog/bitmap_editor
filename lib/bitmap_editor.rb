@@ -8,17 +8,11 @@ class BitmapEditor
     run
   end
 
-  def run(current_image = nil)
-    print_prompt
+  def run(current_image = nil, interactive = true)
+    print '> ' if interactive
     input = Kernel.gets.chomp
     command = Command.select(input)
     result = command.run(current_image)
-    run(result) unless command.terminate?
-  end
-
-  private
-
-  def print_prompt
-    print '> ' if __FILE__ == $0
+    run(result, interactive) unless command.terminate?
   end
 end

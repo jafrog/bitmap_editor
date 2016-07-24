@@ -8,6 +8,7 @@ class BitmapEditor
 
       def run(current_image = nil)
         Kernel.puts MESSAGE
+        current_image
       end
 
       def terminate?

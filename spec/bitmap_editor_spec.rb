@@ -11,7 +11,7 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with("00\n00")
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
   it "Clears the table, setting all pixels to white (O)" do
@@ -23,7 +23,7 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with("00\n00")
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
   it "Colours the pixel (1,1) with colour A" do
@@ -34,7 +34,7 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with("A0\n00")
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
   it "Draws a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive)" do
@@ -45,7 +45,7 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with("A00\nA00\n000")
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
 
@@ -57,7 +57,7 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with("0AA\n000\n000")
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
   it "Shows the contents of the current image" do
@@ -68,7 +68,7 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with("000\n000\n000")
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
   it "Displays help text" do
@@ -78,7 +78,7 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Help::MESSAGE)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
   it "Terminates the session" do
@@ -87,7 +87,7 @@ describe BitmapEditor do
     allow(Kernel).to receive(:gets).and_return(command)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 
   it "Doesn't react to unrecognised commands" do
@@ -97,6 +97,6 @@ describe BitmapEditor do
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Unknown::MESSAGE)
     expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
 
-    bitmap_editor.run
+    bitmap_editor.run(nil, false)
   end
 end

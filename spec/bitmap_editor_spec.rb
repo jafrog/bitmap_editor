@@ -60,7 +60,16 @@ describe BitmapEditor do
     bitmap_editor.run
   end
 
-  xit "Shows the contents of the current image"
+  it "Shows the contents of the current image" do
+    create_image = "I 3 3\n"
+    command = "S"
+
+    allow(Kernel).to receive(:gets).and_return(create_image, command, BitmapEditor::Command::EXIT)
+    expect(Kernel).to receive(:puts).with("000\n000\n000")
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
+
+    bitmap_editor.run
+  end
 
   it "Displays help text" do
     command = "?\n"

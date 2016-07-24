@@ -9,10 +9,16 @@ class BitmapEditor
   end
 
   def run(current_image = nil)
-    print '> '
+    print_prompt
     input = Kernel.gets.chomp
     command = Command.select(input)
     result = command.run(current_image)
     run(result) unless command.terminate?
+  end
+
+  private
+
+  def print_prompt
+    print '> ' if __FILE__ == $0
   end
 end

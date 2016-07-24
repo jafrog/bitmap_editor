@@ -60,8 +60,8 @@ describe BitmapEditor do
   it "Displays help text" do
     command = "?\n"
 
-    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Help::MESSAGE)
+    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT.command)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::HELP_MESSAGE)
 
     run_and_exit
   end
@@ -77,8 +77,8 @@ describe BitmapEditor do
   it "Doesn't react to unrecognised commands" do
     command = "foo\n"
 
-    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
-    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Unknown::MESSAGE)
+    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT.command)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::UNRECOGNISED_COMMAND_MESSAGE)
 
     run_and_exit
   end
@@ -87,11 +87,11 @@ describe BitmapEditor do
 
   def run_commands_and_show_image(*commands)
     create = "I 3 3\n"
-    allow(Kernel).to receive(:gets).and_return(create, *commands, BitmapEditor::Command::SHOW, BitmapEditor::Command::EXIT)
+    allow(Kernel).to receive(:gets).and_return(create, *commands, BitmapEditor::Command::SHOW.command, BitmapEditor::Command::EXIT.command)
   end
 
   def run_and_exit
-    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::EXIT_MESSAGE)
     bitmap_editor.run(nil, false)
   end
 end

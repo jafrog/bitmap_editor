@@ -1,5 +1,7 @@
 # Bitmap Editor
 
+Checkout `no-command-classes` branch for an alternative solution.
+
 ## How to use
 
 Clone this repo, run `bundle install`. To start the bitmap editor run the following command

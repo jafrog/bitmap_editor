@@ -2,6 +2,8 @@ require "bitmap_editor/command/create"
 require "bitmap_editor/command/show"
 require "bitmap_editor/command/color_pixel"
 require "bitmap_editor/command/clear"
+require "bitmap_editor/command/color_vertical"
+require "bitmap_editor/command/color_horizontal"
 require "bitmap_editor/command/help"
 require "bitmap_editor/command/exit"
 require "bitmap_editor/command/unknown"
@@ -11,6 +13,8 @@ class BitmapEditor
     CREATE = "I"
     SHOW = "S"
     COLOR_PIXEL = "L"
+    COLOR_VERTICAL = "V"
+    COLOR_HORIZONTAL = "H"
     CLEAR = "C"
     HELP = "?"
     EXIT = "X"
@@ -18,6 +22,8 @@ class BitmapEditor
     COMMANDS = {CREATE => Create,
                 SHOW => Show,
                 COLOR_PIXEL => ColorPixel,
+                COLOR_VERTICAL => ColorVertical,
+                COLOR_HORIZONTAL => ColorHorizontal,
                 CLEAR => Clear,
                 HELP => Help,
                 EXIT => Exit}

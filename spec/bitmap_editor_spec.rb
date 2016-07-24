@@ -37,8 +37,29 @@ describe BitmapEditor do
     bitmap_editor.run
   end
 
-  xit "Draws a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive)"
-  xit "Draws a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive)"
+  it "Draws a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive)" do
+    create_image = "I 3 3\n"
+    command = "V 1 1 2 A\n"
+
+    allow(Kernel).to receive(:gets).and_return(create_image, command, BitmapEditor::Command::SHOW, BitmapEditor::Command::EXIT)
+    expect(Kernel).to receive(:puts).with("A00\nA00\n000")
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
+
+    bitmap_editor.run
+  end
+
+
+  it "Draws a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive)" do
+    create_image = "I 3 3\n"
+    command = "H 2 3 1 A\n"
+
+    allow(Kernel).to receive(:gets).and_return(create_image, command, BitmapEditor::Command::SHOW, BitmapEditor::Command::EXIT)
+    expect(Kernel).to receive(:puts).with("0AA\n000\n000")
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Command::Exit::MESSAGE)
+
+    bitmap_editor.run
+  end
+
   xit "Shows the contents of the current image"
 
   it "Displays help text" do

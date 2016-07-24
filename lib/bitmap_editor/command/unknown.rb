@@ -3,6 +3,9 @@ class BitmapEditor
     class Unknown
       MESSAGE = "unrecognised command :("
 
+      def initialize(*args)
+      end
+
       def run(current_image = nil)
         Kernel.puts MESSAGE
       end

@@ -83,6 +83,24 @@ describe BitmapEditor do
     run_and_exit
   end
 
+  it "Prints an error message if trying to run an image command without image" do
+    command = "C"
+
+    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::NoImageError.new.message)
+
+    run_and_exit
+  end
+
+  it "Prints an error message if commad arguments are invalid" do
+    command = "I 251 10\n"
+
+    allow(Kernel).to receive(:gets).and_return(command, BitmapEditor::Command::EXIT)
+    expect(Kernel).to receive(:puts).with(BitmapEditor::Image::InvalidDimensionsError.new.message)
+
+    run_and_exit
+  end
+
   private
 
   def run_commands_and_show_image(*commands)

@@ -8,7 +8,7 @@ class BitmapEditor
         @rows = rows.to_i
       end
 
-      def run(current_image = nil)
+      def run(current_image)
         Image.new(@columns, @rows)
       end
 

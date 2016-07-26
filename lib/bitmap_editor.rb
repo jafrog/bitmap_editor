@@ -1,3 +1,5 @@
+require_relative "bitmap_editor/errors/no_image_error"
+require_relative "bitmap_editor/errors/command_argument_error"
 require_relative "bitmap_editor/command"
 
 class BitmapEditor
@@ -13,6 +15,9 @@ class BitmapEditor
     input = Kernel.gets.chomp
     command = Command.select(input)
     result = command.run(current_image)
-    run(result, interactive) unless command.terminate?
+  rescue CommandArgumentError, NoImageError => e
+    Kernel.puts e.message
+  ensure
+    run(result, interactive) unless command && command.terminate?
   end
 end

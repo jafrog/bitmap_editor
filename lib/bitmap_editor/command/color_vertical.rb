@@ -1,3 +1,5 @@
+require_relative "../errors/no_image_error"
+
 class BitmapEditor
   class Command
     class ColorVertical
@@ -9,6 +11,7 @@ class BitmapEditor
       end
 
       def run(current_image)
+        raise(NoImageError) unless current_image
         current_image.color_vertical(@column, @start_row, @end_row, @color)
         current_image
       end

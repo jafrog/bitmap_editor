@@ -1,12 +1,12 @@
-require "bitmap_editor/command/create"
-require "bitmap_editor/command/show"
-require "bitmap_editor/command/color_pixel"
-require "bitmap_editor/command/clear"
-require "bitmap_editor/command/color_vertical"
-require "bitmap_editor/command/color_horizontal"
-require "bitmap_editor/command/help"
-require "bitmap_editor/command/exit"
-require "bitmap_editor/command/unknown"
+require_relative "command/create"
+require_relative "command/show"
+require_relative "command/color_pixel"
+require_relative "command/clear"
+require_relative "command/color_vertical"
+require_relative "command/color_horizontal"
+require_relative "command/help"
+require_relative "command/exit"
+require_relative "command/unknown"
 
 class BitmapEditor
   class Command

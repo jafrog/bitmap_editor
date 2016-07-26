@@ -10,6 +10,12 @@ Clone this repo, run `bundle install`. To start the bitmap editor run the follow
 ruby -Ilib runner.rb
 ```
 
+## Run tests
+
+```ruby
+bundle exec rspec spec/
+```
+
 ## Commands
 
 There are 8 supported commands:

@@ -1,4 +1,4 @@
-require "bitmap_editor/command"
+require_relative "bitmap_editor/command"
 
 class BitmapEditor
   INITIAL_MESSAGE = "type ? for help"

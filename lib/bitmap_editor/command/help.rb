@@ -1,3 +1,5 @@
+require_relative "../errors/command_argument_error"
+
 class BitmapEditor
   class Command
     class Help
@@ -9,6 +11,10 @@ V X Y1 Y2 C - Draw a vertical segment of colour C in column X between rows Y1 an
 H X1 X2 Y C - Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive).
 S - Show the contents of the current image
 X - Terminate the session"
+
+      def initialize(*args)
+        raise(CommandArgumentError) unless args.empty?
+      end
 
       def run(current_image = nil)
         Kernel.puts MESSAGE

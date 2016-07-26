@@ -56,7 +56,7 @@ class BitmapEditor
     end
 
     def color_invalid?(color)
-      color.chars.count > 1
+      !(color =~ /^[A-Z]{1}$/)
     end
 
     def create_image(columns, rows)

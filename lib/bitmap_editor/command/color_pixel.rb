@@ -1,12 +1,15 @@
 require_relative "../errors/no_image_error"
+require_relative "../errors/command_argument_error"
 
 class BitmapEditor
   class Command
     class ColorPixel
-      def initialize(column, row, color)
-        @column = column.to_i
-        @row = row.to_i
-        @color = color
+      def initialize(*args)
+        raise(CommandArgumentError) unless args.count == 3
+
+        @column = args[0].to_i
+        @row = args[1].to_i
+        @color = args[2]
       end
 
       def run(current_image)

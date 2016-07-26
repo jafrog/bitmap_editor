@@ -1,13 +1,16 @@
 require_relative "../errors/no_image_error"
+require_relative "../errors/command_argument_error"
 
 class BitmapEditor
   class Command
     class ColorHorizontal
-      def initialize(start_column, end_column, row, color)
-        @start_column = start_column.to_i
-        @end_column = end_column.to_i
-        @row = row.to_i
-        @color = color
+      def initialize(*args)
+        raise(CommandArgumentError) unless args.count == 4
+
+        @start_column = args[0].to_i
+        @end_column = args[1].to_i
+        @row = args[2].to_i
+        @color = args[3]
       end
 
       def run(current_image)

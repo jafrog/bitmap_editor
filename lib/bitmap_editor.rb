@@ -18,6 +18,7 @@ class BitmapEditor
   rescue CommandArgumentError, NoImageError => e
     Kernel.puts e.message
   ensure
+    result ||= current_image
     run(result, interactive) unless command && command.terminate?
   end
 end

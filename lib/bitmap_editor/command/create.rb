@@ -1,4 +1,4 @@
-require "bitmap_editor/image"
+require_relative "../image"
 
 class BitmapEditor
   class Command

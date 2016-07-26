@@ -26,6 +26,14 @@ class BitmapEditor
       @image = create_image(@columns, @rows)
     end
 
+    def row_out_of_range?(row_index)
+      row_index > @rows || row_index < 1
+    end
+
+    def column_out_of_range?(column_index)
+      column_index > @columns || column_index < 1
+    end
+
     private
 
     def create_image(columns, rows)

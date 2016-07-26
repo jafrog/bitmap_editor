@@ -1,15 +1,12 @@
-require "bitmap_editor/image"
+require "bitmap_editor/command/base"
 
 class BitmapEditor
   class Command
-    class Clear
-      def run(current_image)
+    class Clear < Base
+      def run_command(current_image)
+        raise(NoImageError) unless current_image
         current_image.clear
         current_image
-      end
-
-      def terminate?
-        false
       end
     end
   end

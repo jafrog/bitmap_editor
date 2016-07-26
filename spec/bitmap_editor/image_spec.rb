@@ -28,4 +28,12 @@ describe BitmapEditor::Image do
     image.clear
     expect(image.display).to eq "000\n000\n000"
   end
+
+  it "tells if a row is outside of an image" do
+    expect(image.row_out_of_range?(4)).to be true
+  end
+
+  it "tells if a column is outside of an image" do
+    expect(image.column_out_of_range?(0)).to be true
+  end
 end

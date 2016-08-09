@@ -23,6 +23,14 @@ describe BitmapEditor::Image do
     expect(image.display).to eq "0AA\n000\n000"
   end
 
+  it "fills a bucket with color B" do
+    image.color_horizontal(1, 3, 2, "A")
+    image.color_vertical(2, 1, 3, "A")
+    image.fill_bucket(2, 2, "B")
+
+    expect(image.display).to eq "0B0\nBBB\n0B0"
+  end
+
   it "clears image" do
     image.color_pixel(1, 2, "A")
     image.clear

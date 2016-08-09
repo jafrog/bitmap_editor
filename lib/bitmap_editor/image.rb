@@ -41,11 +41,44 @@ class BitmapEditor
       @image[row-1][start_column-1..end_column-1] = Array.new(end_column-start_column+1) { color }
     end
 
+    def fill_bucket(column, row, color)
+      raise(CommandArgumentError) if row_out_of_range?(row) || column_out_of_range?(column)
+
+      original_color = @image[row-1][column-1]
+      traverse_neighbours(row, column, original_color, color)
+    end
+
     def clear
       @image = create_image(@columns, @rows)
     end
 
     private
+
+    def traverse_neighbours(row, column, original_color, new_color, seen_neighbours = [])
+      neighbours(row, column)
+        .select { |neighbour| !seen_neighbours.include?(neighbour) }
+        .tap { |neighbours| seen_neighbours += neighbours }
+        .select { |n_row, n_col| @image[n_row-1][n_col-1] == original_color }
+        .each { |n_row, n_col| @image[n_row-1][n_col-1] = new_color }
+        .map { |n_row, n_col| traverse_neighbours(n_row, n_col, original_color, new_color, seen_neighbours) }
+    end
+
+    def neighbours(row, column)
+      result = []
+      [row-1, row+1].each do |neighbour_row|
+        unless row_out_of_range?(neighbour_row)
+          result << [neighbour_row, column]
+        end
+      end
+
+      [column-1, column+1].each do |neighbour_column|
+        unless column_out_of_range?(neighbour_column)
+          result << [row, neighbour_column]
+        end
+      end
+
+      result
+    end
 
     def row_out_of_range?(row_index)
       row_index > @rows || row_index < 1

@@ -50,6 +50,17 @@ describe BitmapEditor do
     run_and_exit
   end
 
+  it "Fills in a bucket of color" do
+    draw_horizontal_a = "H 1 3 2 A\n"
+    draw_vertical_a = "V 2 1 3 A\n"
+    fill_bucket_b = "F 2 2 B\n"
+
+    run_commands_and_show_image(draw_horizontal_a, draw_vertical_a, fill_bucket_b)
+    expect(Kernel).to receive(:puts).with("0B0\nBBB\n0B0")
+
+    run_and_exit
+  end
+
   it "Shows the contents of the current image" do
     run_commands_and_show_image
     expect(Kernel).to receive(:puts).with("000\n000\n000")

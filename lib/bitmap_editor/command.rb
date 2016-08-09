@@ -4,6 +4,7 @@ require_relative "command/color_pixel"
 require_relative "command/clear"
 require_relative "command/color_vertical"
 require_relative "command/color_horizontal"
+require_relative "command/fill_bucket"
 require_relative "command/help"
 require_relative "command/exit"
 require_relative "command/unknown"
@@ -15,6 +16,7 @@ class BitmapEditor
     COLOR_PIXEL = "L"
     COLOR_VERTICAL = "V"
     COLOR_HORIZONTAL = "H"
+    FILL_BUCKET = "F"
     CLEAR = "C"
     HELP = "?"
     EXIT = "X"
@@ -24,6 +26,7 @@ class BitmapEditor
                 COLOR_PIXEL => ColorPixel,
                 COLOR_VERTICAL => ColorVertical,
                 COLOR_HORIZONTAL => ColorHorizontal,
+                FILL_BUCKET => FillBucket,
                 CLEAR => Clear,
                 HELP => Help,
                 EXIT => Exit}
